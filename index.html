@@ -1,0 +1,1454 @@
+<title>Jarcería SuMont — Productos para el hogar y tu empresa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
+
+<style>
+  :root {
+    --bg:         #080C0B;
+    --bg-2:       #0F1712;
+    --bg-3:       #162218;
+    --bg-4:       #1C2D22;
+    --accent:     #2ECC6E;
+    --warm:       #FF8844;
+    --text:       #E8F5EC;
+    --muted:      #6B9080;
+    --border:     #1A2C20;
+    --on-accent:  #080C0B;
+    --font:       'Manrope', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ── Navbar ──────────────────────────────────── */
+  .navbar {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(16px, 5vw, 64px);
+    height: 60px;
+    background: rgba(8, 12, 11, 0.90);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .navbar-logo {
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: -0.025em;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar-logo .tagline {
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: none;
+  }
+
+  @media (min-width: 560px) { .navbar-logo .tagline { display: inline; } }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2.5vw, 28px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar-links li { display: none; }
+  .navbar-links li:last-child { display: flex; }
+
+  @media (min-width: 640px) { .navbar-links li { display: flex; } }
+
+  .navbar-links a {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    transition: color 0.18s;
+  }
+
+  .navbar-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent) !important;
+    color: var(--on-accent) !important;
+    padding: 7px 16px !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85 !important; color: var(--on-accent) !important; }
+
+  /* ── Hero ────────────────────────────────────── */
+  .hero-wrap {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 32px;
+    padding: clamp(56px, 9vw, 104px) clamp(16px, 5vw, 64px) clamp(48px, 7vw, 80px);
+    max-width: 1200px;
+  }
+
+  @media (max-width: 740px) {
+    .hero-wrap { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .hero h1 {
+    margin: 0 0 22px;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+    color: var(--text);
+  }
+
+  .hero h1 em { font-style: normal; color: var(--accent); }
+
+  .hero-sub {
+    font-size: clamp(0.92rem, 1.6vw, 1.1rem);
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.72;
+    margin: 0 0 32px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* ── Hero visual ─────────────────────────────── */
+  .hero-visual {
+    display: grid;
+    grid-template-columns: repeat(3, 72px);
+    grid-template-rows: repeat(3, 72px);
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .hv-cell {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .hv-cell.accent-cell {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .hv-cell.warm-cell {
+    background: rgba(255,136,68,0.12);
+    border-color: rgba(255,136,68,0.25);
+  }
+
+  /* ── Buttons ─────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font);
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 12px 22px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.18s;
+    line-height: 1;
+  }
+
+  .btn:hover { opacity: 0.86; }
+
+  .btn-green { background: var(--accent); color: var(--on-accent); }
+  .btn-warm  { background: var(--warm);   color: #fff; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    transition: border-color 0.18s, opacity 0.18s;
+  }
+
+  .btn-ghost:hover { border-color: var(--muted); opacity: 1; }
+
+  .btn-dark-solid {
+    background: var(--on-accent);
+    color: var(--accent);
+    font-size: 0.9rem;
+    padding: 14px 28px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Ticker ──────────────────────────────────── */
+  .ticker {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+    overflow: hidden;
+    padding: 11px 0;
+  }
+
+  .ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll-left 26s linear infinite;
+    will-change: transform;
+  }
+
+  .ticker-track:hover { animation-play-state: paused; }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 28px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .ticker-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── Stats ───────────────────────────────────── */
+  .stats-band {
+    display: flex;
+    flex-wrap: wrap;
+    padding-inline: clamp(16px, 5vw, 64px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 120px;
+    padding-block: 28px;
+    padding-right: 32px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .stat:last-child { border-right: none; }
+  .stat + .stat    { padding-left: 32px; }
+
+  @media (max-width: 500px) {
+    .stat { padding-right: 16px; }
+    .stat + .stat { padding-left: 16px; }
+  }
+
+  .stat-num {
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-num.green { color: var(--accent); }
+
+  .stat-lbl {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--muted);
+  }
+
+  /* ── Section shell ───────────────────────────── */
+  .sec {
+    padding: clamp(48px, 8vw, 88px) clamp(16px, 5vw, 64px);
+  }
+
+  .sec-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 10px; }
+  .sec-label.warm { color: var(--warm); }
+
+  .sec-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin: 0 0 28px;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .sec-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .sec-count { font-size: 0.75rem; font-weight: 600; color: var(--muted); white-space: nowrap; padding-bottom: 4px; }
+
+  /* ── Category tabs ───────────────────────────── */
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 24px;
+  }
+
+  .cat-tab {
+    padding: 5px 13px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--font);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.14s;
+  }
+
+  .cat-tab.active,
+  .cat-tab:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--bg-3);
+  }
+
+  /* ── Products grid ───────────────────────────── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .p-card {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    transition: background 0.14s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .p-card:hover { background: var(--bg-2); }
+  .p-card:hover .p-name { color: var(--accent); }
+
+  /* Photo / visual area */
+  .p-photo {
+    height: 160px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--bg-3);
+  }
+
+  .p-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .p-card:hover .p-photo img { transform: scale(1.04); }
+
+  /* accent bar on hover */
+  .p-card:hover .p-photo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    z-index: 1;
+  }
+
+  .p-body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .p-sku {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .p-sku::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .p-name {
+    font-size: 0.84rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text);
+    transition: color 0.14s;
+    flex: 1;
+  }
+
+  .p-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .p-price {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .p-pack {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    background: var(--bg-3);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  /* ── Kits section ────────────────────────────── */
+  .kits-sec {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .kits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  @media (max-width: 620px) { .kits-grid { grid-template-columns: 1fr; } }
+
+  .kit-card {
+    background: var(--bg-2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .kit-card.kit-premium {
+    background: linear-gradient(160deg, #111C14 0%, #0A1510 100%);
+    position: relative;
+  }
+
+  .kit-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.56rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: var(--warm);
+    border-bottom: 1px solid rgba(255,136,68,0.35);
+    border-left: 1px solid rgba(255,136,68,0.35);
+    padding: 5px 12px;
+    border-radius: 0 0 0 6px;
+    text-transform: uppercase;
+  }
+
+  /* Kit visual header */
+  .kit-visual {
+    height: 200px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-3);
+  }
+
+  .kit-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.75);
+    transition: transform 0.4s ease;
+  }
+
+  .kit-card:hover .kit-visual img { transform: scale(1.03); }
+
+  .kit-visual-label {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    background: rgba(8,12,11,0.75);
+    padding: 4px 10px;
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+  }
+
+  .kit-visual-label.warm { color: var(--warm); }
+
+  .kit-body {
+    padding: clamp(18px, 3vw, 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 1;
+  }
+
+  .kit-name {
+    font-size: clamp(0.95rem, 2.2vw, 1.3rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    text-wrap: balance;
+    color: var(--text);
+  }
+
+  .kit-count {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    line-height: 1;
+  }
+
+  .kit-num {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    color: var(--accent);
+  }
+
+  .kit-num.warm { color: var(--warm); }
+
+  .kit-unit {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .kit-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .kit-item {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+
+  .kit-item::before {
+    content: '–';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .kit-item.warm-bullet::before { color: var(--warm); }
+
+  .kit-bot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .kit-price {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .kit-price.warm { color: var(--warm); }
+
+  .kit-ship {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+
+  .kit-ship.warm { color: var(--warm); }
+
+  /* ── About ───────────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+
+  .about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .about-body p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 460px;
+  }
+
+  .facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .fact {
+    background: var(--bg-2);
+    padding: 15px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+  }
+
+  .fact-ico { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+  .fact-main { font-size: 0.83rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .fact-sub  { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+
+  /* ── CTA band ────────────────────────────────── */
+  .cta-band {
+    background: var(--accent);
+    padding: clamp(44px, 8vw, 88px) clamp(16px, 5vw, 64px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .cta-band h2 {
+    margin: 0;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    color: var(--on-accent);
+    text-wrap: balance;
+    line-height: 1.1;
+  }
+
+  .cta-band p {
+    margin: 0;
+    font-size: 1rem;
+    color: rgba(8, 12, 11, 0.6);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  /* ── Footer ──────────────────────────────────── */
+  footer {
+    padding: clamp(28px, 4vw, 48px) clamp(16px, 5vw, 64px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-brand { font-size: 0.88rem; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); }
+  .footer-copy  { font-size: 0.72rem; color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; }
+  }
+
+  /* ── B2B section ─────────────────────────────── */
+  .b2b-sec {
+    background: var(--bg-2);
+    border-top: 3px solid var(--warm);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .b2b-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: center;
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+
+  @media (max-width: 720px) { .b2b-hero { grid-template-columns: 1fr; } }
+
+  .b2b-headline {
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    text-wrap: balance;
+    color: var(--text);
+    margin: 0 0 16px;
+  }
+
+  .b2b-headline em { font-style: normal; color: var(--warm); }
+
+  .b2b-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.72;
+    margin: 0 0 24px;
+    max-width: 440px;
+  }
+
+  .b2b-claims {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .b2b-claim {
+    background: var(--bg-3);
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .b2b-claim-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+
+  .b2b-claim-text {
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+  }
+
+  .b2b-claim-sub { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+
+  /* B2B packages grid */
+  .b2b-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .b2b-card {
+    background: var(--bg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: background 0.14s;
+  }
+
+  .b2b-card:hover { background: var(--bg-2); }
+
+  .b2b-card.featured {
+    background: linear-gradient(145deg, #181410, #120E0A);
+    border: 1px solid rgba(255,136,68,0.3);
+    outline: none;
+    position: relative;
+  }
+
+  .b2b-featured-tag {
+    position: absolute;
+    top: -1px;
+    right: 20px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--warm);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .b2b-card-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--warm);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .b2b-card-label::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--warm);
+    flex-shrink: 0;
+  }
+
+  .b2b-card-name {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .b2b-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .b2b-price {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    color: var(--warm);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .b2b-retail {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: line-through;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .b2b-saving {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--accent);
+    background: rgba(46,204,110,0.1);
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .b2b-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .b2b-detail {
+    font-size: 0.78rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .b2b-detail::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  /* CTA contacto */
+  .b2b-contact {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--warm);
+    padding: clamp(20px, 3vw, 32px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .b2b-contact-text { font-size: 1rem; font-weight: 700; color: var(--text); }
+  .b2b-contact-sub  { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+  .btn-wa {
+    background: #25D366;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font);
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 12px 22px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.18s;
+    white-space: nowrap;
+  }
+
+  .btn-wa:hover { opacity: 0.88; }
+</style>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-logo">
+    🧹 Jarcería SuMont
+    <span class="tagline">Productos para el hogar y tu empresa</span>
+  </div>
+  <ul class="navbar-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#kits">Kits</a></li>
+    <li><a href="#empresas">Empresas</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a class="nav-cta" href="https://perfil.mercadolibre.com.mx/JARCIERIASUMONTMX" target="_blank" rel="noopener">Tienda ML</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div>
+    <div class="hero-eyebrow">Jarcería SuMont · Productos para el hogar y tu empresa</div>
+    <h1 class="hero">Todo lo que tu hogar<br>necesita para <em>limpiar</em>,<br>en un solo lugar.</h1>
+    <p class="hero-sub">Escobas, fibras, jergas, lazos y kits completos de limpieza. Calidad de jarciería, precio directo, sin salir de casa.</p>
+    <div class="hero-actions">
+      <a class="btn btn-green" href="https://perfil.mercadolibre.com.mx/JARCIERIASUMONTMX" target="_blank" rel="noopener">Ver tienda en Mercado Libre →</a>
+      <a class="btn btn-ghost" href="#kits">Kits del hogar</a>
+    </div>
+  </div>
+  <!-- Decorative icon grid -->
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hv-cell">🧹</div>
+    <div class="hv-cell accent-cell">🟢</div>
+    <div class="hv-cell">🪢</div>
+    <div class="hv-cell">🧺</div>
+    <div class="hv-cell">🧽</div>
+    <div class="hv-cell warm-cell">📦</div>
+    <div class="hv-cell warm-cell">🪵</div>
+    <div class="hv-cell">🧹</div>
+    <div class="hv-cell accent-cell">🎁</div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat">
+    <div class="stat-num green">17</div>
+    <div class="stat-lbl">Productos activos</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">$229</div>
+    <div class="stat-lbl">Precio desde</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num green">100%</div>
+    <div class="stat-lbl">Envío gratis*</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">⭐</div>
+    <div class="stat-lbl">En Mercado Libre</div>
+  </div>
+</div>
+
+<!-- CATALOG -->
+<section class="sec" id="productos">
+  <div class="sec-header">
+    <div>
+      <div class="sec-label">Catálogo completo</div>
+      <h2 class="sec-title" style="margin:0">17 productos de jarciería</h2>
+    </div>
+    <span class="sec-count" id="prodCount">17 productos</span>
+  </div>
+
+  <div class="cat-tabs" id="catTabs">
+    <button class="cat-tab active" data-cat="todos">Todos</button>
+    <button class="cat-tab" data-cat="escobas">Escobas</button>
+    <button class="cat-tab" data-cat="fibras">Fibras</button>
+    <button class="cat-tab" data-cat="textiles">Textiles</button>
+    <button class="cat-tab" data-cat="lazos">Lazos</button>
+    <button class="cat-tab" data-cat="palos">Palos</button>
+    <button class="cat-tab" data-cat="kits">Kits</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- KITS SPOTLIGHT -->
+<section class="sec kits-sec" id="kits">
+  <div class="sec-header">
+    <div>
+      <div class="sec-label">Kits de limpieza</div>
+      <h2 class="sec-title" style="margin:0">Todo incluido en una bolsa</h2>
+    </div>
+    <span class="sec-count">Envío gratis · Stock disponible</span>
+  </div>
+
+  <div class="kits-grid">
+    <!-- Kit Básico -->
+    <div class="kit-card">
+      <div class="kit-visual">
+        <img src="https://http2.mlstatic.com/D_864959-MLM116065037682_092026-O.jpg" alt="Kit Básico" loading="lazy">
+        <div class="kit-visual-label">17 piezas</div>
+      </div>
+      <div class="kit-body">
+        <div>
+          <div class="sec-label" style="margin-bottom:6px">Kit Básico</div>
+          <div class="kit-name">Kit Limpieza Básico Hogar 17 Piezas Todo Incluido</div>
+        </div>
+        <div class="kit-count">
+          <div class="kit-num">17</div>
+          <div class="kit-unit">piezas<br>incluidas</div>
+        </div>
+        <div class="kit-items">
+          <div class="kit-item">1 Escoba perico chica sin palo</div>
+          <div class="kit-item">1 Manta de cielo 100% algodón</div>
+          <div class="kit-item">2 Fibras verdes abrasivas</div>
+          <div class="kit-item">2 Jergas de limpieza 1 metro</div>
+          <div class="kit-item">10 Fibras Ajax con jabón integrado</div>
+          <div class="kit-item">1 Lazo de plástico 10 metros</div>
+        </div>
+        <div class="kit-bot">
+          <div>
+            <div class="kit-price">$449</div>
+            <div class="kit-ship">Envío gratis</div>
+          </div>
+          <a class="btn btn-green" href="https://articulo.mercadolibre.com.mx/MLM-3501405673-_JM" target="_blank" rel="noopener">Comprar →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kit Premium -->
+    <div class="kit-card kit-premium" style="position:relative">
+      <div class="kit-badge">Premium</div>
+      <div class="kit-visual">
+        <img src="https://http2.mlstatic.com/D_828613-MLM116142443364_092026-O.jpg" alt="Kit Premium" loading="lazy">
+        <div class="kit-visual-label warm">18 piezas</div>
+      </div>
+      <div class="kit-body">
+        <div>
+          <div class="sec-label warm" style="margin-bottom:6px">Kit Premium</div>
+          <div class="kit-name">Kit Limpieza Completo Hogar Premium 18 Piezas Todo Incluido</div>
+        </div>
+        <div class="kit-count">
+          <div class="kit-num warm">18</div>
+          <div class="kit-unit">piezas<br>incluidas</div>
+        </div>
+        <div class="kit-items">
+          <div class="kit-item warm-bullet">1 Escoba perico chica sin palo</div>
+          <div class="kit-item warm-bullet">1 Manta de cielo 100% algodón</div>
+          <div class="kit-item warm-bullet">2 Fibras Scotch Brite con esponja</div>
+          <div class="kit-item warm-bullet">2 Jergas de limpieza 1 metro</div>
+          <div class="kit-item warm-bullet">10 Fibras Ajax con jabón integrado</div>
+          <div class="kit-item warm-bullet">1 Lazo henequén natural 10 metros</div>
+          <div class="kit-item warm-bullet">1 Lazo de plástico 10 metros</div>
+        </div>
+        <div class="kit-bot">
+          <div>
+            <div class="kit-price warm">$499</div>
+            <div class="kit-ship warm">Envío gratis</div>
+          </div>
+          <a class="btn btn-warm" href="https://articulo.mercadolibre.com.mx/MLM-3501417731-_JM" target="_blank" rel="noopener">Comprar →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- B2B / EMPRESAS -->
+<section class="sec b2b-sec" id="empresas">
+  <div class="sec-label warm" style="margin-bottom:10px">Proveedores a Empresas</div>
+
+  <div class="b2b-hero">
+    <div>
+      <h2 class="b2b-headline">Tu proveedor actual<br>te está cobrando<br><em>de más.</em></h2>
+      <p class="b2b-sub">En Jarcería SuMont compramos directo de fábrica y te trasladamos ese ahorro. Superamos cualquier cotización actual en artículos de limpieza y jarciería — con factura, entrega y volumen garantizado.</p>
+      <a class="btn btn-warm" href="https://wa.me/525552965067?text=Hola%2C%20quiero%20cotizar%20art%C3%ADculos%20de%20limpieza%20para%20mi%20empresa" target="_blank" rel="noopener">
+        Cotizar por WhatsApp →
+      </a>
+    </div>
+    <div class="b2b-claims">
+      <div class="b2b-claim">
+        <div class="b2b-claim-icon">💰</div>
+        <div>
+          <div class="b2b-claim-text">Precios de mayoreo directo</div>
+          <div class="b2b-claim-sub">Hasta 50% menos que precio unitario de tienda</div>
+        </div>
+      </div>
+      <div class="b2b-claim">
+        <div class="b2b-claim-icon">📦</div>
+        <div>
+          <div class="b2b-claim-text">Pedidos desde 1 caja</div>
+          <div class="b2b-claim-sub">Sin mínimos exagerados — arrancamos desde 24 piezas</div>
+        </div>
+      </div>
+      <div class="b2b-claim">
+        <div class="b2b-claim-icon">🚚</div>
+        <div>
+          <div class="b2b-claim-text">Entrega a todo México</div>
+          <div class="b2b-claim-sub">Envío express o estándar según tu urgencia</div>
+        </div>
+      </div>
+      <div class="b2b-claim">
+        <div class="b2b-claim-icon">🧾</div>
+        <div>
+          <div class="b2b-claim-text">Con factura CFDI</div>
+          <div class="b2b-claim-sub">Régimen RESICO — deducible para tu empresa</div>
+        </div>
+      </div>
+      <div class="b2b-claim">
+        <div class="b2b-claim-icon">🔄</div>
+        <div>
+          <div class="b2b-claim-text">Resurtido periódico</div>
+          <div class="b2b-claim-sub">Programa tu pedido mensual y olvídate de quedarte sin stock</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paquetes B2B -->
+  <div class="sec-label" style="margin-bottom:16px">Paquetes para empresas — precios calculados</div>
+  <div class="b2b-grid">
+
+    <!-- P1: 48 escobas -->
+    <div class="b2b-card featured">
+      <div class="b2b-featured-tag">Más popular</div>
+      <div class="b2b-card-label">Escobas · 48 pzas</div>
+      <div class="b2b-card-name">Caja Escoba Perico Chica × 48</div>
+      <div class="b2b-price-row">
+        <div class="b2b-price">$2,350</div>
+        <div class="b2b-retail">$4,416 ML</div>
+        <div class="b2b-saving">Ahorras 47%</div>
+      </div>
+      <div class="b2b-details">
+        <div class="b2b-detail">$48.96 por escoba (vs $91.80 retail)</div>
+        <div class="b2b-detail">Cerdas PVC resistentes, 24 cm</div>
+        <div class="b2b-detail">Envío incluido a todo México</div>
+        <div class="b2b-detail">Ideal para hoteles, oficinas y limpieza comercial</div>
+      </div>
+    </div>
+
+    <!-- P2: 200 fibras Ajax -->
+    <div class="b2b-card">
+      <div class="b2b-card-label">Fibras Ajax · 200 pzas</div>
+      <div class="b2b-card-name">Caja Fibra Ajax con Jabón × 200</div>
+      <div class="b2b-price-row">
+        <div class="b2b-price">$1,450</div>
+        <div class="b2b-retail">$2,793 ML</div>
+        <div class="b2b-saving">Ahorras 48%</div>
+      </div>
+      <div class="b2b-details">
+        <div class="b2b-detail">$7.25 por fibra (vs $13.97 retail)</div>
+        <div class="b2b-detail">Verde y amarillo, jabón integrado</div>
+        <div class="b2b-detail">Envío incluido a todo México</div>
+        <div class="b2b-detail">Ideal para restaurantes y cocinas industriales</div>
+      </div>
+    </div>
+
+    <!-- P3: 60 jergas -->
+    <div class="b2b-card">
+      <div class="b2b-card-label">Jergas · 60 pzas</div>
+      <div class="b2b-card-name">Paca Jerga Limpieza 1 Metro × 60</div>
+      <div class="b2b-price-row">
+        <div class="b2b-price">$1,150</div>
+        <div class="b2b-retail">$2,394 ML</div>
+        <div class="b2b-saving">Ahorras 52%</div>
+      </div>
+      <div class="b2b-details">
+        <div class="b2b-detail">$19.17 por jerga (vs $39.90 retail)</div>
+        <div class="b2b-detail">100×50 cm, tela absorbente Rosales</div>
+        <div class="b2b-detail">Envío incluido a todo México</div>
+        <div class="b2b-detail">Ideal para hospitales, clínicas y servicios de limpieza</div>
+      </div>
+    </div>
+
+    <!-- P4: Kit personalizado -->
+    <div class="b2b-card">
+      <div class="b2b-card-label">Paquete · A tu medida</div>
+      <div class="b2b-card-name">Kit Personalizado para tu Negocio</div>
+      <div class="b2b-price-row">
+        <div class="b2b-price" style="font-size:1.3rem;color:var(--accent)">Cotización</div>
+      </div>
+      <div class="b2b-details">
+        <div class="b2b-detail">Elige productos, cantidades y frecuencia</div>
+        <div class="b2b-detail">Empaque con tu logo disponible</div>
+        <div class="b2b-detail">Precio especial por volumen y contrato</div>
+        <div class="b2b-detail">Escobas, fibras, jergas, lazos y más</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA contacto -->
+  <div class="b2b-contact">
+    <div>
+      <div class="b2b-contact-text">¿Tu empresa necesita artículos de limpieza al mayoreo?</div>
+      <div class="b2b-contact-sub">Mándanos un mensaje y te mandamos cotización en menos de 24 horas.</div>
+    </div>
+    <a class="btn-wa" href="https://wa.me/525552965067?text=Hola%2C%20quiero%20cotizar%20art%C3%ADculos%20de%20limpieza%20para%20mi%20empresa" target="_blank" rel="noopener">
+      💬 WhatsApp — Cotizar ahora
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="nosotros">
+  <div class="about-grid">
+    <div class="about-body">
+      <div>
+        <div class="sec-label">Sobre nosotros</div>
+        <h2 class="sec-title">Jarciería directa,<br>sin intermediarios.</h2>
+      </div>
+      <p>Somos Jarcería SuMont, vendedores de artículos de limpieza y jarciería en México. Compramos directo de proveedor para ofrecerte precios de mayoreo sin que salgas de casa.</p>
+      <p>Cada producto se empaca con cuidado y sale por mensajería certificada. Trabajamos con Mercado Libre para que tengas compra protegida y seguimiento en tiempo real.</p>
+      <a class="btn btn-ghost" href="https://perfil.mercadolibre.com.mx/JARCIERIASUMONTMX" target="_blank" rel="noopener">Ver perfil en Mercado Libre</a>
+    </div>
+    <div class="facts">
+      <div class="fact">
+        <div class="fact-ico">🏪</div>
+        <div>
+          <div class="fact-main">Proveedor directo</div>
+          <div class="fact-sub">Compramos en Jarciería Micky, CDMX</div>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-ico">📦</div>
+        <div>
+          <div class="fact-main">Empaque cuidadoso</div>
+          <div class="fact-sub">Tus productos llegan en perfecto estado</div>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-ico">🚚</div>
+        <div>
+          <div class="fact-main">Envío gratis a todo México</div>
+          <div class="fact-sub">En la mayoría de nuestros productos</div>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-ico">🛡️</div>
+        <div>
+          <div class="fact-main">Compra protegida</div>
+          <div class="fact-sub">Respaldada por Mercado Libre</div>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-ico">✅</div>
+        <div>
+          <div class="fact-main">17 publicaciones activas</div>
+          <div class="fact-sub">Catálogo verificado y disponible</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>¿Listo para tener tu hogar limpio?</h2>
+  <p>Visita nuestra tienda en Mercado Libre y encuentra el producto que necesitas con envío gratis.</p>
+  <a class="btn btn-dark-solid" href="https://perfil.mercadolibre.com.mx/JARCIERIASUMONTMX" target="_blank" rel="noopener">Ir a la tienda → Mercado Libre</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Jarcería SuMont</div>
+  <div class="footer-copy">Vendedor verificado · Mercado Libre México · 17 productos activos</div>
+</footer>
+
+<script>
+  /* ── Products ─────────────────────────────────── */
+  const PRODS = [
+    { sku:'JSM001',  nombre:'Escoba Perico Chica Económica Paquete x5',  cat:'escobas',  precio:459, pack:'x5',  ml:'MLM3484257299', img:'https://http2.mlstatic.com/D_864959-MLM116065037682_092026-O.jpg' },
+    { sku:'JSM002',  nombre:'Escoba Perico Normal Paquete x5',            cat:'escobas',  precio:529, pack:'x5',  ml:'MLM6210728220', img:'https://http2.mlstatic.com/D_840664-MLM116138199332_092026-O.jpg' },
+    { sku:'JSM003',  nombre:'Escoba Veneciana Extra Suave Paquete x3',    cat:'escobas',  precio:499, pack:'x3',  ml:'MLM6210728312', img:'https://http2.mlstatic.com/D_802987-MLM116138379876_092026-O.jpg' },
+    { sku:'JSM004',  nombre:'Jerga de Limpieza 1 Metro Paquete x10',      cat:'textiles', precio:399, pack:'x10', ml:'MLM6210725956', img:'https://http2.mlstatic.com/D_669431-MLM116064581178_092026-O.jpg' },
+    { sku:'JSM005',  nombre:'Lazo de Plástico 10 Metros Paquete x8',      cat:'lazos',    precio:399, pack:'x8',  ml:'MLM3484257649', img:'https://http2.mlstatic.com/D_878945-MLM117712326325_092026-O.jpg' },
+    { sku:'JSM006',  nombre:'Lazo Henequén Natural 10m Paquete x4',       cat:'lazos',    precio:329, pack:'x4',  ml:'MLM3484257801', img:'https://http2.mlstatic.com/D_953153-MLM117623663291_092026-O.jpg' },
+    { sku:'JSM007',  nombre:'Fibra de Metal Briosa Grande Paquete x10',   cat:'fibras',   precio:299, pack:'x10', ml:'MLM3484255583', img:'https://http2.mlstatic.com/D_690423-MLM117625226325_092026-O.jpg' },
+    { sku:'JSM008',  nombre:'Manta de Cielo Algodón Paquete x8',          cat:'textiles', precio:329, pack:'x8',  ml:'MLM3484255747', img:'https://http2.mlstatic.com/D_956109-MLM116064840120_092026-O.jpg' },
+    { sku:'JSM009',  nombre:'Fibra Ajax Labo Con Jabón Paquete x30',      cat:'fibras',   precio:419, pack:'x30', ml:'MLM3484250901', img:'https://http2.mlstatic.com/D_870398-MLM116142142526_092026-O.jpg' },
+    { sku:'JSM010',  nombre:'Fibra Esponja Scotch Brite Trastes Paq. x8', cat:'fibras',   precio:449, pack:'x8',  ml:'MLM3488508533', img:'https://http2.mlstatic.com/D_828613-MLM116142443364_092026-O.jpg' },
+    { sku:'JSM011',  nombre:'Fibra Verde Abrasiva Para Ollas Paquete x8',  cat:'fibras',  precio:379, pack:'x8',  ml:'MLM6215385916', img:'https://http2.mlstatic.com/D_663723-MLM117627419273_092026-O.jpg' },
+    { sku:'JSM012',  nombre:'Palo de Escoba Universal 120cm Paquete x3',  cat:'palos',    precio:229, pack:'x3',  ml:'MLM3488509533', img:'https://http2.mlstatic.com/D_791889-MLM116142311564_092026-O.jpg' },
+    { sku:'JSM013',  nombre:'Palo de Escoba Universal 120cm Paquete x5',  cat:'palos',    precio:229, pack:'x5',  ml:'MLM3488509539', img:'https://http2.mlstatic.com/D_789155-MLM117628258871_092026-O.jpg' },
+    { sku:'JSM001B', nombre:'Escoba Perico Chica Con Palo 120cm Paq. x5', cat:'escobas',  precio:459, pack:'x5',  ml:'MLM3488485553', img:'https://http2.mlstatic.com/D_664035-MLM117627490801_092026-O.webp' },
+    { sku:'JSM002B', nombre:'Escoba Perico Normal Con Palo 120cm Paq. x5',cat:'escobas',  precio:529, pack:'x5',  ml:'MLM3488485555', img:'https://http2.mlstatic.com/D_781248-MLM117628797447_092026-O.jpg' },
+    { sku:'JSM016',  nombre:'Kit Limpieza Básico Hogar — 17 Piezas',      cat:'kits',     precio:449, pack:'kit', ml:'MLM3501405673', img:'https://http2.mlstatic.com/D_864959-MLM116065037682_092026-O.jpg' },
+    { sku:'JSM017',  nombre:'Kit Limpieza Completo Premium — 18 Piezas',  cat:'kits',     precio:499, pack:'kit', ml:'MLM3501417731', img:'https://http2.mlstatic.com/D_864959-MLM116065037682_092026-O.jpg' },
+  ];
+
+  /* ── Ticker ───────────────────────────────────── */
+  const TICKER_ITEMS = [
+    'Escobas Perico','Fibras Ajax','Jergas 1 Metro','Lazos Henequén',
+    'Mantas de Cielo','Scotch Brite','Palos de Escoba','Kits Completos',
+    'Envío Gratis','Fibras Metálicas','Fibras Verdes','Lazo Plástico',
+  ];
+
+  (function buildTicker() {
+    const track = document.getElementById('tickerTrack');
+    const items = [...TICKER_ITEMS, ...TICKER_ITEMS];
+    track.innerHTML = items.map(t =>
+      `<span class="ticker-item"><span class="ticker-dot"></span>${t}</span>`
+    ).join('');
+  })();
+
+  /* ── Products grid ────────────────────────────── */
+  const grid  = document.getElementById('productsGrid');
+  const count = document.getElementById('prodCount');
+  const tabs  = document.getElementById('catTabs');
+  let   cat   = 'todos';
+
+  function mlUrl(id) {
+    return 'https://articulo.mercadolibre.com.mx/' + id.replace('MLM', 'MLM-') + '-_JM';
+  }
+
+  function render() {
+    const list = cat === 'todos' ? PRODS : PRODS.filter(p => p.cat === cat);
+    count.textContent = list.length + ' producto' + (list.length !== 1 ? 's' : '');
+    grid.innerHTML = list.map(p => `
+      <a class="p-card" href="${mlUrl(p.ml)}" target="_blank" rel="noopener">
+        <div class="p-photo">
+          <img src="${p.img}" alt="${p.nombre}" loading="lazy">
+        </div>
+        <div class="p-body">
+          <div class="p-sku">${p.sku}</div>
+          <div class="p-name">${p.nombre}</div>
+          <div class="p-footer">
+            <div class="p-price">$${p.precio.toLocaleString('es-MX')}</div>
+            <div class="p-pack">${p.pack}</div>
+          </div>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  tabs.addEventListener('click', e => {
+    const tab = e.target.closest('[data-cat]');
+    if (!tab) return;
+    cat = tab.dataset.cat;
+    tabs.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    render();
+  });
+
+  render();
+</script>
