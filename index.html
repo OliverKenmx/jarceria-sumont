@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Jarcería SuMont — Productos para el hogar y tu empresa</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
 
@@ -777,6 +782,174 @@
     .ticker-track { animation: none; }
   }
 
+  /* ── Mobile: hamburger nav ───────────────────────── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.22s;
+    transform-origin: center;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(8,12,11,0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    flex-direction: column;
+    padding: 12px 0 20px;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    padding: 14px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  .mobile-menu .mob-cta {
+    margin: 16px 24px 0;
+    padding: 14px;
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: 5px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom: none;
+  }
+
+  .mobile-menu .mob-wa {
+    margin: 10px 24px 0;
+    padding: 14px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom: none;
+  }
+
+  @media (max-width: 640px) {
+    .hamburger { display: flex; }
+    .navbar-links { display: none; }
+  }
+
+  /* ── Mobile: cat tabs scroll ────────────────────── */
+  @media (max-width: 640px) {
+    .cat-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      gap: 6px;
+    }
+
+    .cat-tabs::-webkit-scrollbar { display: none; }
+
+    .cat-tab {
+      flex-shrink: 0;
+      padding: 7px 14px;
+      font-size: 0.72rem;
+    }
+  }
+
+  /* ── Mobile: product grid 2 cols ────────────────── */
+  @media (max-width: 500px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .p-photo { height: 130px; }
+    .p-body  { padding: 10px 12px 12px; }
+    .p-name  { font-size: 0.78rem; }
+    .p-price { font-size: 0.95rem; }
+  }
+
+  /* ── Mobile: stats 2×2 ──────────────────────────── */
+  @media (max-width: 480px) {
+    .stats-band { display: grid; grid-template-columns: 1fr 1fr; }
+    .stat { border-right: none; }
+    .stat:nth-child(1),
+    .stat:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .stat:nth-child(1),
+    .stat:nth-child(3) { border-right: 1px solid var(--border); }
+    .stat + .stat { padding-left: 16px; }
+  }
+
+  /* ── Mobile: B2B single col ─────────────────────── */
+  @media (max-width: 500px) {
+    .b2b-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Mobile: touch targets ──────────────────────── */
+  @media (max-width: 640px) {
+    .btn { min-height: 48px; padding: 13px 20px; font-size: 0.9rem; }
+    .btn-wa { min-height: 48px; padding: 13px 20px; font-size: 0.9rem; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+  }
+
+  /* ── Floating WhatsApp ──────────────────────────── */
+  .fab-wa {
+    position: fixed;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    z-index: 200;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .fab-wa:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+  }
+
+  @media (min-width: 1024px) { .fab-wa { display: none; } }
+
   /* ── B2B section ─────────────────────────────── */
   .b2b-sec {
     background: var(--bg-2);
@@ -1017,7 +1190,23 @@
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a class="nav-cta" href="https://perfil.mercadolibre.com.mx/JARCIERIASUMONTMX" target="_blank" rel="noopener">Tienda ML</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#productos" class="mob-link">Productos</a>
+  <a href="#kits" class="mob-link">Kits</a>
+  <a href="#empresas" class="mob-link">Empresas</a>
+  <a href="#nosotros" class="mob-link">Nosotros</a>
+  <a class="mob-cta" href="https://perfil.mercadolibre.com.mx/JARCIERIASUMONTMX" target="_blank" rel="noopener">🛒 Tienda en Mercado Libre</a>
+  <a class="mob-wa" href="https://wa.me/525552965067?text=Hola%2C%20me%20interesa%20un%20producto%20de%20Jarcer%C3%ADa%20SuMont" target="_blank" rel="noopener">💬 WhatsApp</a>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a class="fab-wa" href="https://wa.me/525552965067?text=Hola%2C%20me%20interesa%20un%20producto%20de%20Jarcer%C3%ADa%20SuMont" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">💬</a>
 
 <!-- HERO -->
 <div class="hero-wrap">
@@ -1451,4 +1640,24 @@
   });
 
   render();
+
+  /* ── Hamburger menu ──────────────────────────────── */
+  const hamburger   = document.getElementById('hamburger');
+  const mobileMenu  = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  mobileMenu.querySelectorAll('.mob-link').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
 </script>
+</body>
+</html>
